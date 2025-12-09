@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acesso Disponível</title>
 
-  <!-- ✅ TikTok Pixel – 3 CONTAS -->
+  <!-- ✅ TikTok Pixel – 3 CONTAS (CORRIGIDO) -->
   <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject = t;
@@ -23,20 +23,35 @@
       for (var i = 0; i < ttq.methods.length; i++) {
         ttq.setAndDefer(ttq, ttq.methods[i]);
       }
-      ttq.load = function(e){
-        var s = document.createElement("script");
-        s.async = true;
-        s.src = "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=" + e + "&lib=" + t;
-        document.head.appendChild(s);
+
+      ttq.instance = function(t){
+        var e = ttq._i[t] || [];
+        for (var n = 0; n < ttq.methods.length; n++) {
+          ttq.setAndDefer(e, ttq.methods[n]);
+        }
+        return e;
       };
 
-      // ✅ PIXELS
+      ttq.load = function(e){
+        var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i = ttq._i || {};
+        ttq._i[e] = [];
+        ttq._i[e]._u = r;
+        ttq._t = ttq._t || {};
+        ttq._t[e] = +new Date;
+
+        var s = d.createElement("script");
+        s.async = true;
+        s.src = r + "?sdkid=" + e + "&lib=" + t;
+        var x = d.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+      };
+
+      // ✅ LOAD DOS PIXELS
       ttq.load('D4S9DDJC77UBCU8NEQM0'); // CA 2
       ttq.load('D4S9EB3C77UD1J9U8IFG'); // CA 3
       ttq.load('D4S9ESRC77UBCU8NEQOG'); // CA DAVI
 
-      // ✅ PageView
-      ttq.page();
     }(window, document, 'ttq');
   </script>
 
@@ -103,20 +118,24 @@
     <h1>Acesso disponível</h1>
     <p>Clique no botão abaixo para continuar.</p>
 
-    <button id="cta">
-      CONTINUAR
-    </button>
+    <button id="cta">CONTINUAR</button>
 
     <div class="note">Página segura • Acesso direto</div>
   </div>
 
-  <!-- ✅ EVENTO + REDIRECT APÓS CLIQUE -->
+  <!-- ✅ PAGEVIEW + EVENTOS MULTI-PIXEL -->
   <script>
+    // ✅ PageView explícito para TODOS os pixels
+    ttq.instance('D4S9DDJC77UBCU8NEQM0').page();
+    ttq.instance('D4S9EB3C77UD1J9U8IFG').page();
+    ttq.instance('D4S9ESRC77UBCU8NEQOG').page();
+
     document.getElementById('cta').addEventListener('click', function () {
 
-      if (window.ttq) {
-        ttq.track('InitiateCheckout');
-      }
+      // ✅ InitiateCheckout em TODOS os pixels
+      ttq.instance('D4S9DDJC77UBCU8NEQM0').track('InitiateCheckout');
+      ttq.instance('D4S9EB3C77UD1J9U8IFG').track('InitiateCheckout');
+      ttq.instance('D4S9ESRC77UBCU8NEQOG').track('InitiateCheckout');
 
       setTimeout(function () {
         window.location.href = "https://apextry.com/go/tktkadsrede";
