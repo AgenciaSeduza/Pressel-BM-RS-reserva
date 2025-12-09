@@ -31,58 +31,45 @@
         ttq._t = ttq._t || {};
         ttq._t[e] = +new Date;
         var s = d.createElement("script");
-        s.type = "text/javascript";
         s.async = true;
         s.src = r + "?sdkid=" + e + "&lib=" + t;
-        var x = d.getElementsByTagName("script")[0];
-        x.parentNode.insertBefore(s, x);
+        d.head.appendChild(s);
       };
 
-      /* ✅ LOAD DOS 3 PIXELS */
-      ttq.load('D4S9DDJC77UBCU8NEQM0'); // CA 2
-      ttq.load('D4S9EB3C77UD1J9U8IFG'); // CA 3
-      ttq.load('D4S9ESRC77UBCU8NEQOG'); // CA DAVI
+      // ✅ PIXELS
+      ttq.load('D4S9DDJC77UBCU8NEQM0');
+      ttq.load('D4S9EB3C77UD1J9U8IFG');
+      ttq.load('D4S9ESRC77UBCU8NEQOG');
 
-      /* ✅ PageView */
-      ttq.page();
     }(window, document, 'ttq');
   </script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background:#000;
+      width:100%;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
-
-    body {
-      background: #000;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .loader{
+      width:80%;
+      max-width:360px;
+      height:8px;
+      background:rgba(255,255,255,0.15);
+      border-radius:50px;
+      overflow:hidden;
     }
-
-    .loader {
-      width: 80%;
-      max-width: 360px;
-      height: 8px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50px;
-      overflow: hidden;
+    .bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#22c55e,#4ade80);
+      animation:load 1.8s linear forwards;
     }
-
-    .bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #22c55e, #4ade80);
-      animation: load 1.6s ease-in-out forwards;
-    }
-
-    @keyframes load {
-      from { width: 0%; }
-      to   { width: 100%; }
+    @keyframes load{
+      to{width:100%}
     }
   </style>
 </head>
@@ -93,11 +80,20 @@
     <div class="bar"></div>
   </div>
 
-  <!-- ✅ Redirecionamento -->
+  <!-- ✅ DISPARO CORRETO DOS EVENTOS -->
   <script>
-    setTimeout(function () {
-      window.location.href = "https://apextry.com/go/tktkadsrede";
-    }, 1600);
+    // Aguarda o TikTok Pixel realmente estar pronto
+    ttq.ready(function () {
+
+      // ✅ PageView explícito (garantido)
+      ttq.page();
+
+      // ✅ Tempo seguro antes do redirect
+      setTimeout(function () {
+        window.location.href = "https://apextry.com/go/tktkadsrede";
+      }, 2200);
+
+    });
   </script>
 
 </body>
