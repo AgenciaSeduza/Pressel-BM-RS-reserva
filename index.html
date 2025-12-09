@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acesso Disponível</title>
 
-  <!-- ✅ TikTok Pixel – MULTI CONTAS -->
+  <!-- ✅ TikTok Pixel – 3 CONTAS -->
   <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject = t;
@@ -24,24 +24,18 @@
         ttq.setAndDefer(ttq, ttq.methods[i]);
       }
       ttq.load = function(e){
-        var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
-        ttq._i = ttq._i || {};
-        ttq._i[e] = [];
-        ttq._i[e]._u = r;
-        ttq._t = ttq._t || {};
-        ttq._t[e] = +new Date;
-        var s = d.createElement("script");
+        var s = document.createElement("script");
         s.async = true;
-        s.src = r + "?sdkid=" + e + "&lib=" + t;
-        d.head.appendChild(s);
+        s.src = "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=" + e + "&lib=" + t;
+        document.head.appendChild(s);
       };
 
-      // ✅ 3 PIXELS
+      // ✅ PIXELS
       ttq.load('D4S9DDJC77UBCU8NEQM0'); // CA 2
       ttq.load('D4S9EB3C77UD1J9U8IFG'); // CA 3
       ttq.load('D4S9ESRC77UBCU8NEQOG'); // CA DAVI
 
-      // ✅ PageView garantido
+      // ✅ PageView
       ttq.page();
     }(window, document, 'ttq');
   </script>
@@ -71,7 +65,7 @@
     h1{
       font-size:28px;
       font-weight:800;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
     p{
       font-size:16px;
@@ -107,16 +101,16 @@
 
   <div class="card">
     <h1>Acesso disponível</h1>
-    <p>Clique abaixo para continuar.</p>
+    <p>Clique no botão abaixo para continuar.</p>
 
     <button id="cta">
-      CONTINUAR AGORA
+      CONTINUAR
     </button>
 
-    <div class="note">Acesso seguro • Conteúdo exclusivo</div>
+    <div class="note">Página segura • Acesso direto</div>
   </div>
 
-  <!-- ✅ EVENTO NO CLIQUE + REDIRECT -->
+  <!-- ✅ EVENTO + REDIRECT APÓS CLIQUE -->
   <script>
     document.getElementById('cta').addEventListener('click', function () {
 
